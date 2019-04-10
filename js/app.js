@@ -14,7 +14,7 @@ $(document).ready(function() {
   }
   Horn.prototype.render = function () {
     let hornSectionHtml = $('#hornAnimal').html();
-    console.log('3')
+   
     $('main').append('<section id="clone"></section>');
     $('#clone').html(hornSectionHtml);
     
