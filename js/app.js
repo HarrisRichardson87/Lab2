@@ -3,6 +3,7 @@
 $(document).ready(function() {
 
   const allHorns = [];
+
   function Horn(horn){
     this.image_url = horn.image_url;
     this.title = horn.title;
@@ -11,20 +12,22 @@ $(document).ready(function() {
     this.horns = horn.horns
     allHorns.push(this);
   }
-  Horn.prototype.render = () => {
-    const hornSectionHtml = $('#hornAnimal').html()
-    
+  Horn.prototype.render = function () {
+    let hornSectionHtml = $('#hornAnimal').html();
+    console.log('3')
     $('main').append('<section id="clone"></section>');
-    console.log($('#clone'))
     $('#clone').html(hornSectionHtml);
-
+    
+    $('#clone').find('h2').text(this.title);
     $('#clone').find('img').attr('src', this.image_url);
     $('#clone').find('alt').attr('alt', this.description);
     $('#clone').attr('id', this.keyword);
-   
-    $('#clone').attr('id', this.horns);
+    $('#clone').attr('id',this.horns);
+}
+  const testHornedAnimal = new Horn ({});
+  testHornedAnimal.render();
 
-  }
+
   Horn.collectHorns = () =>{
     $.get('data/page-1.json','json').then(data =>{
       data.forEach(horn => new Horn(horn));
