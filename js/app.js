@@ -13,17 +13,26 @@ $(document).ready(function() {
     allHorns.push(this);
   }
   Horn.prototype.render = function () {
-    let hornSectionHtml = $('#hornAnimal').html();
+    const hornSectionHtml = $('#hornAnimal').html();
    
     $('main').append('<section id="clone"></section>');
     $('#clone').html(hornSectionHtml);
     
     $('#clone').find('h2').text(this.title);
+
     $('#clone').find('img').attr('src', this.image_url);
     $('#clone').find('alt').attr('alt', this.description);
-    $('#clone').attr('id', this.keyword);
-    $('#clone').attr('id',this.horns);
-}
+    
+    
+    $('#clone').attr('id', '');
+    /////drop down/////
+    const dropSelect = $('#animal').html();
+    $('#hornAnimalDrop').append('<option id = "drop"></option>');
+    $('#drop').text(this.title);
+    $('#drop').find('alt').attr('alt',this.description);
+    $('#drop').attr('id', '');
+    
+  }
   const testHornedAnimal = new Horn ({});
   testHornedAnimal.render();
 
@@ -35,6 +44,12 @@ $(document).ready(function() {
     });
   };
   Horn.collectHorns();
-
-
+  $("#hornAnimalDrop").change(function() {
+    let $selected = $(this).val();
+    console.log($selected)
+    $('h2:not(:contains("$selected"))').hide();
+    
+  });
+  
 });
+
