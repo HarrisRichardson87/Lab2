@@ -1,12 +1,28 @@
+body{
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
 #dropdown{
 margin:auto;
 width:100px;
 display:inline-block;
+float:left;
+font-family: sans-serif;
 }
 h1{
 font-size:100px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 img{
+  display: inline-block;
   height:100px;
   width:100px;
+  float:left;
+  padding:10px;
+}
+
+h2{
+
 }
