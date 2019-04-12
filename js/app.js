@@ -20,16 +20,15 @@ Horn.prototype.render = function () {
   $('#clone').find('alt').attr('alt', this.description);
   $('#clone').attr('class',this.keyword);
   $('#clone').attr('id', this.title);
+  $('#clone').find('h2').attr('id',this.horns);
 }
 
 Horn.prototype.makeOption = function(){
-
   if($(`option[id = ${this.keyword}]`).length)return;
   $('#hornAnimalDrop').append('<option id = "drop"></option>');
   $('#drop').text(this.keyword);
   $('#drop').find('alt').attr('alt',this.description);
   $('#drop').attr('id', this.keyword);
-
 }
 const testHornedAnimal = new Horn ({});
 testHornedAnimal.render();
@@ -49,27 +48,41 @@ $('#hornAnimalDrop').change(function() {
   $('section').hide();
   $(`.${$selected}`).show();
 });
-$(document).ready(function() {
 
+
+$('header').on('click','button',function(){
+  console.log($(this).text())
+  allHorns = [];
+  $('main').empty();
+
+  Horn.collectHorns(`data/${$(this).text()}.json`);
+  console.log(allHorns);
+
+});
+
+$(document).ready(function() {
   Horn.collectHorns('data/page-1.json')
-  $('header').on('click','button',function(){
-    allHorns = [];
-    
-    //wont deploy??//
-    console.log('clicked')
-    Horn.collectHorns('data/page-2.json');
-    
-    //`/data${$(this).text()}.json`//
-  })
   $('header').on('click','p',function(){
     allHorns.sort((a,b)=>{
+      $('main').empty();
       if(a.title > b.title) return 1;
       if(a.title < b.title) return -1;
       return 0;
     })
-    
     allHorns.forEach(horn => horn.render());
   })
+  $('header').on('click','h3',function(){
+    $('main').empty();
+    allHorns.sort((a,b)=>{
+      if(a.horns > b.horns) return 1;
+      if(a.horns < b.horns) return -1;
+      return 0;
+    })
+    allHorns.forEach(horn => horn.render());
+
+
+  })
+
 
 });
 
