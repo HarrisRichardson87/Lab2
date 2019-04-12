@@ -23,17 +23,17 @@ $(document).ready(function() {
     $('#clone').find('alt').attr('alt', this.description);
     $('#clone').attr('class',this.keyword);
     $('#clone').attr('id', this.title);
-
+  }
     
-
+  Horn.prototype.makeOption = function(){
+  
+    if($(`option[id = ${this.keyword}]`).length)return;
     $('#hornAnimalDrop').append('<option id = "drop"></option>');
     $('#drop').text(this.keyword);
     $('#drop').find('alt').attr('alt',this.description);
     $('#drop').attr('id', this.keyword);
-
-
-   
-  }
+    
+}
   const testHornedAnimal = new Horn ({});
   testHornedAnimal.render();
   
@@ -42,6 +42,7 @@ $(document).ready(function() {
     $.get('data/page-1.json','json').then(data =>{
       data.forEach(horn => new Horn(horn));
       allHorns.forEach(horn => horn.render());
+      allHorns.forEach(horn => horn.makeOption());
     });
   };
   Horn.collectHorns();

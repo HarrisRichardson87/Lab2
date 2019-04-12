@@ -4,25 +4,32 @@ body{
 }
 
 
-#dropdown{
-margin:auto;
-width:100px;
-display:inline-block;
-float:left;
-font-family: sans-serif;
-}
+
 h1{
 font-size:100px;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-}
-img{
-  display: inline-block;
-  height:100px;
-  width:100px;
-  float:left;
-  padding:10px;
+font-family: 'Oldenburg', cursive;
+clear:both;
 }
 
 h2{
+  font-family: 'Oldenburg', cursive;
+}
+select{
+  margin: 10px;
+  font-family: 'Oldenburg', cursive;
+  text-align: center;
+  width:200px;
+  clear:both;
+}
+section{
+  margin:10px;
+  display: inline-block
+}
+img{
+height:150px;
+width:150px;
+}
+h2{
+font-size:10px;
 
 }
