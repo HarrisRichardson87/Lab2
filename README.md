@@ -1,4 +1,5 @@
-# Lab2
+
+# Lab3
 
 Number and name of feature: Display Images
 
