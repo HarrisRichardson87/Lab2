@@ -1,5 +1,9 @@
 'use strict';
 let allHorns = [];
+const hornHtml = $('#horn-template').html();
+const template = Handlebars.compile(hornHtml);
+const optionHtml = $('#drop-template').html();
+const optionTemplate = Handlebars.compile(optionHtml);
 
 function Horn(horn){
   this.image_url = horn.image_url;
@@ -9,30 +13,6 @@ function Horn(horn){
   this.horns = horn.horns
   allHorns.push(this);
 }
-Horn.prototype.render = function () {
-  const hornSectionHtml = $('#hornAnimal').html();
-
-  $('main').append('<section id="clone"></section>');
-  $('#clone').html(hornSectionHtml);
-  $('#clone').find('h2').text(this.title);
-  $('#clone').find('img').attr('id',this.title)
-  $('#clone').find('img').attr('src', this.image_url);
-  $('#clone').find('alt').attr('alt', this.description);
-  $('#clone').attr('class',this.keyword);
-  $('#clone').attr('id', this.title);
-  $('#clone').find('h2').attr('id',this.horns);
-}
-
-Horn.prototype.makeOption = function(){
-  if($(`option[id = ${this.keyword}]`).length)return;
-  $('#hornAnimalDrop').append('<option id = "drop"></option>');
-  $('#drop').text(this.keyword);
-  $('#drop').find('alt').attr('alt',this.description);
-  $('#drop').attr('id', this.keyword);
-}
-const testHornedAnimal = new Horn ({});
-testHornedAnimal.render();
-
 
 Horn.collectHorns = data =>{
   $.get(`${data}`,'json').then(data =>{
@@ -42,6 +22,36 @@ Horn.collectHorns = data =>{
   });
 };
 
+Horn.prototype.render = function (){
+  $('main').append(template(this))
+}
+
+/*Horn.prototype.makeOption = function(){
+  if($(`option[id = ${this.keyword}]`).length)return;
+  $('header').append(optionTemplate(this));
+}*/
+
+Horn.collectHorns('data/page-1.json')
+/*
+Horn.prototype.render = function () {
+  const hornSectionHtml = $('#hornAnimal').html();
+  $('main').append('<section id="clone"></section>');
+  $('#clone').html(hornSectionHtml);
+  $('#clone').find('h2').text(this.title);
+  $('#clone').find('img').attr('id',this.title)
+  $('#clone').find('img').attr('src', this.image_url);
+  $('#clone').find('alt').attr('alt', this.description);
+  $('#clone').attr('class',this.keyword);
+  $('#clone').attr('id', this.title);
+  $('#clone').find('h2').attr('id',this.horns);
+}*/
+Horn.prototype.makeOption = function(){
+  if($(`option[id = ${this.keyword}]`).length)return;
+  $('#hornAnimalDrop').append('<option id = "drop"></option>');
+  $('#drop').text(this.keyword);
+  $('#drop').find('alt').attr('alt',this.description);
+  $('#drop').attr('id', this.keyword);
+}
 $('#hornAnimalDrop').change(function() {
   let $selected = $(this).val();
   console.log($selected);
@@ -49,15 +59,12 @@ $('#hornAnimalDrop').change(function() {
   $(`.${$selected}`).show();
 });
 
-
 $('header').on('click','button',function(){
   console.log($(this).text())
   allHorns = [];
   $('main').empty();
-
   Horn.collectHorns(`data/${$(this).text()}.json`);
   console.log(allHorns);
-
 });
 
 $(document).ready(function() {
@@ -79,10 +86,8 @@ $(document).ready(function() {
       return 0;
     })
     allHorns.forEach(horn => horn.render());
-
-
   })
-
-
 });
+
+
 
