@@ -1,50 +1,64 @@
-    
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <title>Horned Animals</title>
+    
+    <!-- linking css -->
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link href="https://fonts.googleapis.com/css?family=Oldenburg" rel="stylesheet">
+    
+    <!-- Horned animal template -->
     <script id="horn-template" type="text/x-handlebars-template">
+      
       <section class = "{{ keyword }}" id = "{{ horns }}">
         <h2 id = "{{ horns }}">{{ title }}</h2>
         <img src= "{{ image_url }}" alt= "{{ description }}" id = "{{title}}">
         <p></p>
       </section>
     </script>
+
+    <!-- Dropdown menu template -->
     <script id="drop-template" type="text/x-handlebars-template"> 
     <select>
       <option id = "{{keyword}}" alt = "">{{keyword}}</option>
     </select>
     </script>
 
-
-
-
   </head>
 
 <body>
-<header>
-  <h1>Crown of Horns</h1>
-  <select id="hornAnimalDrop">
-    <option id = "animal" alt = ""></option>
-  </select>
-  <button type ="button" id="page-1">page-1</button>
-  <button type ="button" id="page-2">page-2</button>
-  <p>Sort By Name</p>
-  <h3>Sort by Horns</h3>
-</header>
+  <header>
+    <h1>Crown of Horns</h1>
+  </header>
+
+  <nav>
+    <!-- Population dropdown menu -->
+    <select id="hornAnimalDrop">
+        <option id = "animal" alt = "">Select an Animal</option>
+      </select>
+  
+      <!-- Page Buttons -->
+      <button type ="button" id="page-1">page-1</button>
+      <button type ="button" id="page-2">page-2</button>
+      
+      <!-- Sorting buttons. Need to format.-->
+      <p>Sort By Name</p>
+      <p>Sort by Horns</p>
+  </nav>
 
 <main>
+  <section id="animals" class="deck"></section>
 </main>
 
-
+<!-- Script sources -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src = "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.1/handlebars.min.js"></script>
 <script src="js/app.js" type="text/javascript" ></script>
+
 </body>
 </html>
