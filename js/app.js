@@ -45,6 +45,8 @@ Horn.prototype.render = function () {
   $('#clone').attr('id', this.title);
   $('#clone').find('h2').attr('id',this.horns);
 }*/
+
+// building dropdown
 Horn.prototype.makeOption = function(){
   if($(`option[id = ${this.keyword}]`).length)return;
   $('#hornAnimalDrop').append('<option id = "drop"></option>');
